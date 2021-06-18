@@ -2,6 +2,10 @@
 
 **FPM10A Sensor** is small project where user can store one's fingerprint and verify it as the program runs.
 
+## Schema
+
+![Schema](./image/schema.jpg)
+
 ## How to run
 
 Prequesites:
@@ -17,7 +21,7 @@ If the environment is Arduino Uno.
 
 Build files
 ```bash
-pio run -e uno 
+pio run
 ```
 
 Upload to board 
@@ -26,11 +30,6 @@ pio run -e uno -t upload
 ```
 
 If its esp32.
-
-Build files
-```bash
-pio run -e esp 
-```
 
 Upload to board 
 ```bash
@@ -53,7 +52,7 @@ The device will record one person's finger and continue verify every finger that
 ### How we built it
 The project mostly relies on the adafruit fingerprint library and arduino built-in class. 
 
-### What's next for Keycodes
+### What's next
 - Implementing multiple users support for fingerprint sensor 
 
 ### Contributors
