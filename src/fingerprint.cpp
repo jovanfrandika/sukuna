@@ -1,7 +1,15 @@
 #include "../include/fingerprint.hpp"
 
-int8_t getImageThenConvertToTemplate(Adafruit_Fingerprint finger, int8_t slot) {
-  uint8_t p = -1;
+/**************************************************************************/
+/*!
+    @brief  Get the fingerprint image then turn it into a template
+    @param  finger Fingerprint instance  
+    @param  slot Location to place feature template 
+    (put one in 1 and another in 2 for verification to create model)
+*/
+/**************************************************************************/
+int8_t getImageThenConvertToTemplate(Adafruit_Fingerprint finger, uint8_t slot) {
+  uint8_t p;
   while (p != FINGERPRINT_OK) {
     p = finger.getImage();
     getMessage(p);
@@ -13,25 +21,14 @@ int8_t getImageThenConvertToTemplate(Adafruit_Fingerprint finger, int8_t slot) {
   return 1;
 }
 
-int8_t getImageThenConvertToTemplate(Adafruit_Fingerprint finger) {
-  int8_t p = -1;
-
-  p = finger.getImage();
-  getMessage(p);
-
-  if (p != FINGERPRINT_OK) 
-    return -1;
-
-  p = finger.image2Tz();
-  getMessage(p);
-
-  if (p != FINGERPRINT_OK) 
-    return -1;
-
-  return 1;
-}
-
-int8_t registerFingerprint(Adafruit_Fingerprint finger, int8_t id) {
+/**************************************************************************/
+/*!
+    @brief  Register the fingerprint to an ID
+    @param  finger Fingerprint instance  
+    @param  id  Destinated ID
+*/
+/**************************************************************************/
+int8_t registerFingerprint(Adafruit_Fingerprint finger, uint8_t id) {
   uint8_t initial = 1;
   uint8_t verification = 2;
   
@@ -44,7 +41,7 @@ int8_t registerFingerprint(Adafruit_Fingerprint finger, int8_t id) {
   Serial.println("Remove finger!!");
   delay(2);
   
-  uint8_t p = 0;   
+  int8_t p = 0;   
 
   Serial.println("Place same finger again!!"); 
   if (!getImageThenConvertToTemplate(finger, verification))
@@ -61,8 +58,14 @@ int8_t registerFingerprint(Adafruit_Fingerprint finger, int8_t id) {
   return 1; 
 }
 
+/**************************************************************************/
+/*!
+    @brief  Get fingerprint ID from sensor
+    @param  finger Fingerprint instance 
+*/
+/**************************************************************************/
 int8_t getFingerprintID(Adafruit_Fingerprint finger) {
-  int8_t p;
+  uint8_t p;
   if (!getImageThenConvertToTemplate(finger))
     return -1;
 
@@ -75,7 +78,13 @@ int8_t getFingerprintID(Adafruit_Fingerprint finger) {
   return finger.fingerID;
 }
 
-void getMessage(int32_t p) {
+/**************************************************************************/
+/*!
+    @brief  Log the sensor's reading
+    @param  p Sensor reading result
+*/
+/**************************************************************************/
+void getMessage(uint8_t p) {
   switch (p) {
     case FINGERPRINT_OK:
       Serial.println("Fingerprint have been read");

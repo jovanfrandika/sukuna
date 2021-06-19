@@ -21,7 +21,7 @@ Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
 
 int8_t id = 1; 
 int8_t ledPin = 7;
-int8_t fingerID = -1;
+int16_t fingerID = -1;
 
 void setup() {
   Serial.begin(9600); 
@@ -44,6 +44,7 @@ void loop() {
   Serial.println("Reading fingerprint to match!");
   fingerID = getFingerprintID(finger);
 
+  // Will light LED if the correct fingerprint match
   if (id == fingerID){
     Serial.println("Fingerprint match!!!");
     digitalWrite(ledPin, HIGH);
