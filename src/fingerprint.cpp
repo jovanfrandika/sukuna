@@ -9,7 +9,7 @@
 */
 /**************************************************************************/
 int8_t getImageThenConvertToTemplate(Adafruit_Fingerprint finger, uint8_t slot) {
-  uint8_t p;
+  int16_t p = -1;
   while (p != FINGERPRINT_OK) {
     p = finger.getImage();
     getMessage(p);
