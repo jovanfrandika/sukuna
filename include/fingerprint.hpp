@@ -4,14 +4,14 @@
 #include <Arduino.h>
 #include <Adafruit_Fingerprint.h>
 
-uint8_t getImageThenConvertToTemplate(Adafruit_Fingerprint finger, uint8_t slot);
+int8_t getImageThenConvertToTemplate(Adafruit_Fingerprint finger, int8_t slot);
 
-uint8_t getImageThenConvertToTemplate(Adafruit_Fingerprint finger);
+int8_t getImageThenConvertToTemplate(Adafruit_Fingerprint finger);
 
-uint8_t registerFingerprint(Adafruit_Fingerprint finger, uint8_t id);
+int8_t registerFingerprint(Adafruit_Fingerprint finger, int8_t id);
 
-uint8_t getFingerprintID(Adafruit_Fingerprint finger);
+int8_t getFingerprintID(Adafruit_Fingerprint finger);
 
-void getMessage(uint32_t p);
+void getMessage(int32_t p);
 
 #endif

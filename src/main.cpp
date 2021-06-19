@@ -19,9 +19,9 @@ SoftwareSerial mySerial(2, 3);
 // Using sensor without password
 Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
 
-uint8_t id = 1; 
-uint8_t ledPin = 7;
-uint8_t fingerID = -1;
+int8_t id = 1; 
+int8_t ledPin = 7;
+int8_t fingerID = -1;
 
 void setup() {
   Serial.begin(9600); 

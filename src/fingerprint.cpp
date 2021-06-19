@@ -1,6 +1,6 @@
 #include "../include/fingerprint.hpp"
 
-uint8_t getImageThenConvertToTemplate(Adafruit_Fingerprint finger, uint8_t slot) {
+int8_t getImageThenConvertToTemplate(Adafruit_Fingerprint finger, int8_t slot) {
   uint8_t p = -1;
   while (p != FINGERPRINT_OK) {
     p = finger.getImage();
@@ -13,8 +13,8 @@ uint8_t getImageThenConvertToTemplate(Adafruit_Fingerprint finger, uint8_t slot)
   return 1;
 }
 
-uint8_t getImageThenConvertToTemplate(Adafruit_Fingerprint finger) {
-  uint8_t p = -1;
+int8_t getImageThenConvertToTemplate(Adafruit_Fingerprint finger) {
+  int8_t p = -1;
 
   p = finger.getImage();
   getMessage(p);
@@ -31,7 +31,7 @@ uint8_t getImageThenConvertToTemplate(Adafruit_Fingerprint finger) {
   return 1;
 }
 
-uint8_t registerFingerprint(Adafruit_Fingerprint finger, uint8_t id) {
+int8_t registerFingerprint(Adafruit_Fingerprint finger, int8_t id) {
   uint8_t initial = 1;
   uint8_t verification = 2;
   
@@ -61,8 +61,8 @@ uint8_t registerFingerprint(Adafruit_Fingerprint finger, uint8_t id) {
   return 1; 
 }
 
-uint8_t getFingerprintID(Adafruit_Fingerprint finger) {
-  uint8_t p;
+int8_t getFingerprintID(Adafruit_Fingerprint finger) {
+  int8_t p;
   if (!getImageThenConvertToTemplate(finger))
     return -1;
 
@@ -75,7 +75,7 @@ uint8_t getFingerprintID(Adafruit_Fingerprint finger) {
   return finger.fingerID;
 }
 
-void getMessage(uint32_t p) {
+void getMessage(int32_t p) {
   switch (p) {
     case FINGERPRINT_OK:
       Serial.println("Fingerprint have been read");
